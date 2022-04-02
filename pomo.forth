@@ -34,3 +34,5 @@ CR
 POMO-TIME @ .
 
 CR
+
+BYE
