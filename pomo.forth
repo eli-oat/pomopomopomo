@@ -6,6 +6,8 @@ VARIABLE POMO-TIME
 VARIABLE REST-TIME
 600000 REST-TIME !
 
+( Consider using VALUE instead of VARIABLE )
+
 ( TODO: haven't found a way to sleep in pforth.
 	Using gforth ms does the trick, e.g.
 	25 60 * 1000 * ms 
