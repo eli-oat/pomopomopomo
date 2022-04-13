@@ -29,8 +29,8 @@ VARIABLE REST-TIME
 	THEN
 ;
 
-( POMO-LOOP exits when POMO-TIME reaches 0, 
-	then resets to POMO-TIME to 1500000 )
+( POMO-LOOP exits when POMO-TIME reaches 0 )
+( FIXME: reset POMO-TIME and REST-TIME once they've reached 0 )
 : POMO-LOOP
 	BEGIN
 		PAGE 
