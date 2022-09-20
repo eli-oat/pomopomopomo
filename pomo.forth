@@ -6,26 +6,25 @@ VARIABLE POMO-TIME
 VARIABLE REST-TIME
 600000 REST-TIME !
 
-( Consider using VALUE instead of VARIABLE )
-
-( TODO: haven't found a way to sleep in pforth.
-	Using gforth ms does the trick, e.g.
-	25 60 * 1000 * ms 
-	sleeps for 25 minutes 
-
-	More on ms, 
-	https://www.complang.tuwien.ac.at/forth/gforth/Docs-html/Keeping-track-of-Time.html#index-ms-_0040var_007b-u-_002d_002d--_007d--facility_002dext-3025 )
+( TODO: Consider using VALUE instead of VARIABLE )
 
 : 1SEC  1000  MS ;
 : 30SEC 30000 MS ;
 : 60SEC 60000 MS ;
 
+: PRETTY-TIME
+	1000 / 
+	60 / 
+; 
+
 ( DECREMENTS POMO-TIME if it is greater than 0 )
 : CHECK-POMO-TIME? 
 	0> IF
-		POMO-TIME @ 1 - POMO-TIME ! ." 🍅" SPACE POMO-TIME ? CR
+		POMO-TIME @ 1000 - POMO-TIME ! ." 🍅" SPACE POMO-TIME @ PRETTY-TIME . ." minutes" CR
+		." ....." SPACE POMO-TIME ? CR
 	ELSE 
-		REST-TIME @ 1 - REST-TIME ! ." 😴" SPACE REST-TIME ? CR
+		REST-TIME @ 1000 - REST-TIME ! ." 😴" SPACE REST-TIME @ PRETTY-TIME . ." minutes" CR
+		." ....." SPACE REST-TIME ? CR
 	THEN
 ;
 
