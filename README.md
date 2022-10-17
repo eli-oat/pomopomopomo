@@ -1,1 +1,1 @@
-a very tiny pomodoro timer
+a very tiny [pomodoro](https://en.wikipedia.org/wiki/Pomodoro_Technique) timer for [gforth](https://gforth.org).
