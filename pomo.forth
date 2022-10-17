@@ -1,0 +1,44 @@
+( POMO POMO POMO )
+
+VARIABLE POMO-TIME
+1500000 POMO-TIME !
+
+VARIABLE REST-TIME
+600000 REST-TIME !
+
+( TODO: Consider using VALUE instead of VARIABLE )
+
+: 1SEC  1000  MS ;
+: 30SEC 30000 MS ;
+: 60SEC 60000 MS ;
+
+: PRETTY-TIME
+	1000 / 
+	60 / 
+; 
+
+( DECREMENTS POMO-TIME if it is greater than 0 )
+: CHECK-POMO-TIME? 
+	0> IF
+		POMO-TIME @ 1000 - POMO-TIME ! ." 🍅" SPACE POMO-TIME @ PRETTY-TIME . ." minutes" CR
+		." ....." SPACE POMO-TIME ? CR
+	ELSE 
+		REST-TIME @ 1000 - REST-TIME ! ." 😴" SPACE REST-TIME @ PRETTY-TIME . ." minutes" CR
+		." ....." SPACE REST-TIME ? CR
+	THEN
+;
+
+( POMO-LOOP exits when POMO-TIME reaches 0 )
+( FIXME: reset POMO-TIME and REST-TIME once they've reached 0 )
+: POMO-LOOP
+	BEGIN
+		PAGE 
+			POMO-TIME @ CHECK-POMO-TIME? 1SEC 
+		PAGE
+		POMO-TIME @ REST-TIME @ + 0=
+	UNTIL
+;
+
+POMO-LOOP
+
+BYE
